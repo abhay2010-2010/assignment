@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Data.css"; // Import CSS file
+
 
 function Data() {
   const [data, setData] = useState([]);
@@ -8,7 +8,7 @@ function Data() {
   const [sortByUserId, setSortByUserId] = useState(null);
   const [userIdFilter, setUserIdFilter] = useState("");
 
-  // Fetch data from API
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -22,12 +22,10 @@ function Data() {
     fetchData();
   }, []);
 
-  // 🔍 Search by title
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // 🔄 Sort by title
   const handleSortByTitle = () => {
     const sortedData = [...data].sort((a, b) =>
       sortByTitle ? b.title.localeCompare(a.title) : a.title.localeCompare(b.title)
@@ -36,7 +34,6 @@ function Data() {
     setSortByTitle(!sortByTitle);
   };
 
-  // 🔄 Sort by userId
   const handleSortByUserId = () => {
     const sortedData = [...data].sort((a, b) =>
       sortByUserId ? b.userId - a.userId : a.userId - b.userId
@@ -45,12 +42,12 @@ function Data() {
     setSortByUserId(!sortByUserId);
   };
 
-  // 🔍 Filter by userId
+
   const handleFilterByUserId = (e) => {
     setUserIdFilter(e.target.value);
   };
 
-  // Apply search and filter
+
   const filteredData = data.filter(
     (ele) =>
       ele.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
